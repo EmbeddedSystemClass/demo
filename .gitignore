@@ -1,15 +1,7 @@
 
-*.crf
+*.map
 *.crf
 *.o
-*.o
-*.crf
-1.7版本加时间相对高度 自动更新RTK状态值/app_user/application.c
-*.Administrator
 *.bin
 *.uvprojx
-*.htm
-*.hex
-*.axf
-*.o
-*.crf
+*.Administrator
