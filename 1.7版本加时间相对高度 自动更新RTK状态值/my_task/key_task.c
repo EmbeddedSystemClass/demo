@@ -1,7 +1,7 @@
 #include "key_task.h"
 #include "psdk_debug.h"
 
-unsigned portBASE_TYPE uxHighWaterMarkkey;  
+ 
 
 //-------------------------------------------------------------------------
 //任务函数
@@ -10,8 +10,7 @@ void  KEY_TASK (void const * argument)
 	  uint8_t n=0;
     uint32_t   xLastWakeTime;
     xLastWakeTime=osKernelSysTick();//初始化xLastWakeTime为当前滴答数注意第一次使用的时候 要获取当前时间
-	  uxHighWaterMarkkey=uxTaskGetStackHighWaterMark( KEY_TASK_Handle );    //查询大小  
-	  PSDK_LOG_DEBUG("key_TASK  %d\r\n",uxHighWaterMarkkey);
+
 	while (1) 
 	{
         osDelayUntil(&xLastWakeTime,10);        

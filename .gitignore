@@ -8,3 +8,8 @@
 *.Administrator
 *.bin
 *.uvprojx
+*.htm
+*.hex
+*.axf
+*.o
+*.crf

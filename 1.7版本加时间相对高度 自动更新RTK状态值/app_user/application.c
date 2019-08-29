@@ -357,7 +357,7 @@ u8 g_gps003Table[200];  //存储上次的pos点
 unsigned portBASE_TYPE uxHighWaterMarkpps; 
 void vApplicationStackOverflowHook( TaskHandle_t xTask, signed char *pcTaskName )
 {
-//	PSDK_LOG_DEBUG("任务：%s 发现栈溢出\r\n", pcTaskName);
+	PSDK_LOG_DEBUG("任务：%s 发现栈溢出\r\n", pcTaskName);
 }
 extern T_PsdkPositioningGetPosAck writesdpos;
 extern T_GpsRawDataMsg x_gpsRawDataMsg;
@@ -369,8 +369,8 @@ void  PPS_TASK (void const * argument)
 	  uint8_t *g_gps001TableTemp;
     uint32_t triggertimeadd=0;
 	  psdk_f64_t Relative_hight = 0;
-//		uxHighWaterMarkpps=uxTaskGetStackHighWaterMark( PPS_TASK_Handle );    //查询大小  
-//	  PSDK_LOG_DEBUG("pps_TASK  %d\r\n", uxHighWaterMarkpps );
+		uxHighWaterMarkpps=uxTaskGetStackHighWaterMark( PPS_TASK_Handle );    //查询大小  
+	  PSDK_LOG_DEBUG("pps_TASK  %d\r\n", uxHighWaterMarkpps );
 		while (1) 
 		{	
 			 if((ppssignal == 1) &&(flag1 == 1))

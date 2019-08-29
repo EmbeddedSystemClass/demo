@@ -13,8 +13,7 @@ void  CAM_TASK (void const * argument)
 		uint8_t n=0;
     uint8_t i=0;
     uint8_t j=0;
-    uxHighWaterMarkcam=uxTaskGetStackHighWaterMark( CAM_TASK_Handle );    //查询大小  
-	  PSDK_LOG_DEBUG("cam_TASK  %d\r\n",uxHighWaterMarkcam);
+
     //------------------------------------------------------------
     //等待标志g_camTaskCanTakeOverFlag置位 cam任务可以接管标志置位
     while (0==g_camTaskCanTakeOverFlag)   //在run_task.c里面 置1

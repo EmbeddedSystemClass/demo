@@ -61,29 +61,6 @@ static uint8_t s_ppsSig = 0;
 
 
 
-//-----------------------------------------
-//禁止5个口线中断
-void cocoguojia_exitInterruptDisable(void)
-{
-	EXTI->IMR &= (~(EXTI_Line3));
-
-	
-	EXTI->PR = EXTI_Line3;			//写1可以清除中断标志
-
-}
-
-//-----------------------------------------
-//使能5个口线中断
-void cocoguojia_exitInterruptEnable(void)
-{	
-	EXTI->PR = EXTI_Line3;			//写1可以清除中断标志
-
-
-	
-	EXTI->IMR |=EXTI_Line3;
-
-}
-
 
 
 /**
