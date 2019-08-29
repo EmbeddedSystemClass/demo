@@ -55,45 +55,9 @@ void  OLED_TASK (void const * argument)
 				n=0;
 			}	
 		}
-        
-        if(OLEDSHOWSTATE_REPAIRMODEL1==g_oledStateFlag)
-		{
-			cocoguojia_oledShowRepairModel(1);
-		}
-        if(OLEDSHOWSTATE_REPAIRMODEL2==g_oledStateFlag)
-		{
-			cocoguojia_oledShowRepairModel(2);
-		}
-        if(OLEDSHOWSTATE_REPAIRMODEL3==g_oledStateFlag)
-		{
-			cocoguojia_oledShowRepairModel(3);
-		}
-        if(OLEDSHOWSTATE_REPAIRMODEL4==g_oledStateFlag)
-		{
-			cocoguojia_oledShowRepairModel(4);
-		}
-		
-		
+    
 
-		if(OLEDSHOWSTATE_INIT==g_oledStateFlag)        //显示 系统初始化中
-		{
-			cocoguojia_oledShowSystemInit();
-		}
-		
 
-		
-		if(SYSTEMSTATE_GOTOSHUT==g_oledStateFlag)     //显示 关机中
-		{
-			cocoguojia_oledShowShuting();
-		}
-		
-
-		
-		if(SYSTEMSTATE_GOTOOPEN==g_oledStateFlag)     //显示 开机中
-		{
-			cocoguojia_oledShowOpening();
-		}
-		
 
 		
 		if(SYSTEMSTATE_SHUTFAIL==g_oledStateFlag)     //关机失败
