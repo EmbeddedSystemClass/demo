@@ -74,27 +74,7 @@ void PPS_Init(void)
 		NVIC_InitTypeDef NVIC_InitStructure;
 		GPIO_InitTypeDef GPIO_InitStructure;
 	
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB|RCC_APB2Periph_AFIO,ENABLE); //外部中断需要打开AFIO时钟
-												
-		/* 配置为浮空输入 */
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3;	
-		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
-		GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
-		GPIO_Init(GPIOB, &GPIO_InitStructure);
 
-  	GPIO_EXTILineConfig(GPIO_PortSourceGPIOB,GPIO_PinSource3);
-
-  	EXTI_InitStructure.EXTI_Line=EXTI_Line3;	
-  	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
-  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;// EXTI_Trigger_Falling  EXTI_Trigger_Rising
-  	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-  	EXTI_Init(&EXTI_InitStructure);	 	//根据EXTI_InitStruct中指定的参数初始化外设EXTI寄存器
-
-  	NVIC_InitStructure.NVIC_IRQChannel = EXTI3_IRQn;		
-  	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 11;	
-  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;					
-  	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								//使能外部中断通道
-  	NVIC_Init(&NVIC_InitStructure);  
   
 }
 

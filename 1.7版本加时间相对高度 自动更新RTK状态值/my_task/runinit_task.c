@@ -25,16 +25,7 @@ void  RUNINIT_TASK (void const * argument)
     PowerUpAndShowLogo();                   //系统刚上和电显示LOGO
     
     osDelay(20); 
-    sendCom=USART2COM_ASK;
-    osMessagePut(usart2SendMessageQHandle,sendCom,0); 
-    osDelay(300);
-    sendCom=USART2COM_ASK;
-    osMessagePut(usart2SendMessageQHandle,sendCom,0);  
-    osDelay(300);
-    sendCom=USART2COM_ASK;
-    osMessagePut(usart2SendMessageQHandle,sendCom,0); 
-    osDelay(300);
-    
+
     ReadEepromAndShowResultAndSetDoWhit();  //读EEPROM并显示上次设置结果并且处理设置参数
     ShowSystemInit();                       //OLED显示系统初始化
 	

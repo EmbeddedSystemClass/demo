@@ -26,22 +26,8 @@ void  OLED_TASK (void const * argument)
 	while (1) 
 	{	     
         evt=osMessageGet(oledShowMessageQHandle,0); 
-        if(osEventMessage==evt.status)
-		{
-            OLED_Clear();
-			g_oledStateFlag=evt.value.v;
-            osDelay(10);	 
-            n=0;            
-		}
-        else
-        {
-            osDelay(200);
-        }    
-		
-		if(OLEDSHOWSTATE_LOGO==g_oledStateFlag)
-		{
-			cocoguojia_oledShowShareuavLogoAndID();
-		}		
+   
+	
 
 		if( (SYSTEMSTATE_OFFTRUE==g_oledStateFlag)||(SYSTEMSTATE_ONTRUE==g_oledStateFlag) )
 		{
