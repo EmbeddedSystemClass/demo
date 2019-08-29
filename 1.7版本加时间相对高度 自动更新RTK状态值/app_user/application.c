@@ -404,95 +404,95 @@ void  PPS_TASK (void const * argument)
 					{
 					   flag1 = 0;
 					}
-					while(exitbit)
-					{
-						  osDelay(2);
-							if(triggertime < ppsNewTimeMs)  //判断两个时间
-							{
-									if((ppsNewTimeMs-triggertime)<2000)
-									{
-										Test_RequestPosition(&s_psdkUpperHandle,triggertime);	
-										UTC_to_BJtime(&utc_time,8);
+//					while(exitbit)
+//					{
+//						  osDelay(2);
+//							if(triggertime < ppsNewTimeMs)  //判断两个时间
+//							{
+//									if((ppsNewTimeMs-triggertime)<2000)
+//									{
+//										Test_RequestPosition(&s_psdkUpperHandle,triggertime);	
+//										UTC_to_BJtime(&utc_time,8);
 
-													if(0==g_nameFlag)//0=还没确认过文本名字的日期   1=确认过文本名字的日期 2=创建过表头
-													{
-															for(i=0;i<20;i++)
-															 {			
-																	g_cocoguojia_sdcard_txtname20[i]=0;
-															 }		
-															 sprintf((&g_cocoguojia_sdcard_txtname20[0]),"%4d.%02d.%02d",									
-															                        bj_timer.baseTimestamp.year,
-																											bj_timer.baseTimestamp.month ,
-																											bj_timer.baseTimestamp.day);
+//													if(0==g_nameFlag)//0=还没确认过文本名字的日期   1=确认过文本名字的日期 2=创建过表头
+//													{
+//															for(i=0;i<20;i++)
+//															 {			
+//																	g_cocoguojia_sdcard_txtname20[i]=0;
+//															 }		
+//															 sprintf((&g_cocoguojia_sdcard_txtname20[0]),"%4d.%02d.%02d",									
+//															                        bj_timer.baseTimestamp.year,
+//																											bj_timer.baseTimestamp.month ,
+//																											bj_timer.baseTimestamp.day);
 
-															 g_nameFlag=1;                     
-													} 
-										
-										writebit=1;
-									}else
-											{
-												 exitbit=0;
-											}
-							}					
-							if(writebit==1)
-							{
-									writebit=0;
-									if(2==g_gpsTableFlag)
-										 {
-												for(j=0;j<200;j++)
-												{
-														g_gps001Table[j]=0;
-												}
-												g_gps001TableTemp=&g_gps001Table[0];                 
-										 }             
-										else 
-										 {
-												for(j=0;j<200;j++)
-												{
-														g_gps002Table[j]=0;
-												}
-												g_gps001TableTemp=&g_gps002Table[0];
-										 }
-										 if(g_ppsRtkHealthNum !=0 ){
-										 sprintf(((char*)g_gps001TableTemp),"%.8lf,%.8lf,%lf,%2d,%2d,%2d,%lf,%d,%4d.%02d.%02d,%2d.%02d.%02d.%d",
-																												writesdpos.posDetailInfo[1].targetPointPos.longitude,
-																												writesdpos.posDetailInfo[1].targetPointPos.latitude,
-																												writesdpos.posDetailInfo[1].targetPointPos.height,
-																												writesdpos.posDetailInfo[1].uavAtti.pitchAttiAngle,
-																												writesdpos.posDetailInfo[1].uavAtti.rollAttiAngle,
-																												writesdpos.posDetailInfo[1].uavAtti.yawAttiAngle,
-										 												writesdpos.posDetailInfo[1].targetPointPos.height - Relative_hight,		
-																												g_ppsRtkHealthNum	,									 
-																											bj_timer.baseTimestamp.year,
-																											bj_timer.baseTimestamp.month ,
-																											bj_timer.baseTimestamp.day,
-																											bj_timer.baseTimestamp.hour,
-																											bj_timer.baseTimestamp.minute,
-																											bj_timer.baseTimestamp.second,   
-																											bj_timer.eventDetailInfo[0].timeOffsetUs
-																										
-										  ); 
-									   
-													 if(2==g_gpsTableFlag){
-																g_gpsTableFlag=1;
-													 }             
-														else {                 
-																g_gpsTableFlag=2;
-														}
-													  strcpy((char *)g_gps003Table,(char *)g_gps001TableTemp); //记录的点
-											}else{
-																strcpy((char *)g_gps001TableTemp,(char *)g_gps003Table); //上次记录的点                    
-																if(2==g_gpsTableFlag){
-																		g_gpsTableFlag=1;
-																}             
-																else {                 
-																		g_gpsTableFlag=2;
-																}
-											}										 
-											cocoguojia_sdWrireGpsRtk();       //写TF卡 写TF卡信息      g_gps001Table 
-											exitbit=0;
-									}
-						 }
+//															 g_nameFlag=1;                     
+//													} 
+//										
+//										writebit=1;
+//									}else
+//											{
+//												 exitbit=0;
+//											}
+//							}					
+//							if(writebit==1)
+//							{
+//									writebit=0;
+//									if(2==g_gpsTableFlag)
+//										 {
+//												for(j=0;j<200;j++)
+//												{
+//														g_gps001Table[j]=0;
+//												}
+//												g_gps001TableTemp=&g_gps001Table[0];                 
+//										 }             
+//										else 
+//										 {
+//												for(j=0;j<200;j++)
+//												{
+//														g_gps002Table[j]=0;
+//												}
+//												g_gps001TableTemp=&g_gps002Table[0];
+//										 }
+//										 if(g_ppsRtkHealthNum !=0 ){
+//										 sprintf(((char*)g_gps001TableTemp),"%.8lf,%.8lf,%lf,%2d,%2d,%2d,%lf,%d,%4d.%02d.%02d,%2d.%02d.%02d.%d",
+//																												writesdpos.posDetailInfo[1].targetPointPos.longitude,
+//																												writesdpos.posDetailInfo[1].targetPointPos.latitude,
+//																												writesdpos.posDetailInfo[1].targetPointPos.height,
+//																												writesdpos.posDetailInfo[1].uavAtti.pitchAttiAngle,
+//																												writesdpos.posDetailInfo[1].uavAtti.rollAttiAngle,
+//																												writesdpos.posDetailInfo[1].uavAtti.yawAttiAngle,
+//										 												writesdpos.posDetailInfo[1].targetPointPos.height - Relative_hight,		
+//																												g_ppsRtkHealthNum	,									 
+//																											bj_timer.baseTimestamp.year,
+//																											bj_timer.baseTimestamp.month ,
+//																											bj_timer.baseTimestamp.day,
+//																											bj_timer.baseTimestamp.hour,
+//																											bj_timer.baseTimestamp.minute,
+//																											bj_timer.baseTimestamp.second,   
+//																											bj_timer.eventDetailInfo[0].timeOffsetUs
+//																										
+//										  ); 
+//									   
+//													 if(2==g_gpsTableFlag){
+//																g_gpsTableFlag=1;
+//													 }             
+//														else {                 
+//																g_gpsTableFlag=2;
+//														}
+//													  strcpy((char *)g_gps003Table,(char *)g_gps001TableTemp); //记录的点
+//											}else{
+//																strcpy((char *)g_gps001TableTemp,(char *)g_gps003Table); //上次记录的点                    
+//																if(2==g_gpsTableFlag){
+//																		g_gpsTableFlag=1;
+//																}             
+//																else {                 
+//																		g_gpsTableFlag=2;
+//																}
+//											}										 
+//											cocoguojia_sdWrireGpsRtk();       //写TF卡 写TF卡信息      g_gps001Table 
+//											exitbit=0;
+//									}
+//						 }
 				}  
 				
 				
