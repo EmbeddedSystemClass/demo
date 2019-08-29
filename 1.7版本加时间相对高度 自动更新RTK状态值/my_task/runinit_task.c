@@ -87,20 +87,8 @@ static void ReadEepromAndShowResultAndSetDoWhit(void)
     uint32_t sendCom=0;
     xReturn=xReturn;
 
-    //---------------------------------------------------------------------------------
-	//读eeprom 
-	cocoguojia_readSetParameter();
 
-	//---------------------------------------------------------------------------------------------------
-	//进入到设置模式 page3 显示当前设置结果
-	g_offOrOnTureStateFlag=OLEDSHOWSTATE_SETMODEL4;
-    osMessagePut(oledShowMessageQHandle,g_offOrOnTureStateFlag,0);//任务的句柄，发送的数据 32位，覆盖当前通知
-   	FMQ_ON;
-    osDelay(500);
-    FMQ_OFF;				 
-    osDelay(200);
-    osDelay(1000);
-    osDelay(1000);
+
     
     sendCom=USART2COM_ASK;
     xReturn=osMessagePut(usart2SendMessageQHandle,sendCom,0);//分别问5个相机的状态   
@@ -120,10 +108,7 @@ static void ReadEepromAndShowResultAndSetDoWhit(void)
 	{
 		//---------------------------------------------------------------------------------------------------
 		//显示设置界面1
-		g_offOrOnTureStateFlag=OLEDSHOWSTATE_SETMODEL1;
-		osMessagePut(oledShowMessageQHandle,g_offOrOnTureStateFlag,0);//任务的句柄，发送的数据 32位，覆盖当前通知						 
-		FMQ_ON;
-        osDelay(500);
+		
         FMQ_OFF;
         osDelay(100);
 	}
