@@ -60,15 +60,7 @@ static uint8_t isLogInit = 0;
     RingBuf_Init(&s_uart##n##WriteRingBuffer, s_uart##n##WriteBuf, UART_WRITE_BUF_SIZE);    \
 }
 
-//---------------------------------------------
-////USART 时钟初始化                                   没有使用
-//#define RCC_CONFIG_UART(n)                                                          \
-//{                                                                                   \
-//    RCC_AHB2PeriphClockCmd(UART##n##_GPIO_RCC, ENABLE);                             \
-//    RCC_APB2PeriphClockCmd(RCC_APBPeriph_UART##n, ENABLE);                          \
-//}
 
-//---------------------------------------------
 //USART IO口初始化
 #define GPIO_CONFIG_UART(n)                                                         \
 {                                                                                   \

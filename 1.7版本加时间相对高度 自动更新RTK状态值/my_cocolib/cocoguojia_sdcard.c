@@ -56,14 +56,6 @@ void cocoguojia_SdioFlash_ms(u16 nms)
 } 
 
 
-//--------------------------------------------------------
-//乒乓缓存 用来存储gps rtk的信息
-//uint8_t g_GpsRtkProtectFlag=0;    //1=数组1处于保护 2=数组2处于保护 0=平时
-//uint8_t g_gpsRtkPointFlag=1;      //1=当前最新的是数组1  2=当前最新的是数组2  为了数据的透明性
-//uint8_t g_gpsRtkTempTable1[200]={0,0,0,0};
-//uint8_t g_gpsRtkTempTable2[200]={0,0,0,0};
-//uint8_t g_gpsRtkTable1Len=0;
-//uint8_t g_gpsRtkTable2Len=0;
 
  
 uint8_t gpsRtkTempTableTemp[200]={0,0,0,0};
@@ -122,29 +114,8 @@ void cocoguojia_sdWrireGpsRtk(void)
     
     if(180>=len)
     {
-        //#################################
-        taskENTER_CRITICAL();         
-        cocoguojia_RegisteredWorkspace();       //在FatFs模块上注册一个工作区(文件系统对象)  创建一个磁盘MYDISK0
-        taskEXIT_CRITICAL();            				
-        //#################################
 
-					g_cocoguojia_sdcard_myWriteBuffer200[0]  =g_sdWriteForGpsRtkNum/1000+'0';
-					g_cocoguojia_sdcard_myWriteBuffer200[1]  =g_sdWriteForGpsRtkNum%1000/100+'0';
-					g_cocoguojia_sdcard_myWriteBuffer200[2]  =g_sdWriteForGpsRtkNum%1000%100/10+'0';
-					g_cocoguojia_sdcard_myWriteBuffer200[3]  =g_sdWriteForGpsRtkNum%1000%100%10+'0';
-					g_cocoguojia_sdcard_myWriteBuffer200[4]  =',';
-        
-        for(i=5;i<len+5;i++)
-        {
-            g_cocoguojia_sdcard_myWriteBuffer200[i]=*str;  //这个地方是取值
-            str++;   //而p++ 就是把 p里面的内容+1个单位，因为 p存的是地址，所以是 地址+1，也就是下一个地址。那么指针p 就指向了 下一个地址了
-        }             
-        
-        g_cocoguojia_sdcard_myWriteBuffer200[len+5]  ='\r';  //在结尾进行换行操作
-        g_cocoguojia_sdcard_myWriteBuffer200[len+1+5]='\n';
-        g_cocoguojia_sdcard_myWriteBuffer200[len+2+5]=0;
-        
-        
+
         //#################################
         taskENTER_CRITICAL();           								    //进入临界区
         //在磁盘MYDISK0打开文件fileName如果没有则创建文件 

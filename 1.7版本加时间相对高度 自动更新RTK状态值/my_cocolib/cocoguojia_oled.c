@@ -34,26 +34,7 @@ void OLED_WR_Byte(u8 dat,u8 cmd)
 	OLED_DC_Set();   	  
 } 
 
-	void OLED_Set_Pos(unsigned char x, unsigned char y) 
-{ 
-	OLED_WR_Byte(0xb0+y,OLED_CMD);
-	OLED_WR_Byte(((x&0xf0)>>4)|0x10,OLED_CMD);
-	OLED_WR_Byte((x&0x0f)|0x01,OLED_CMD); 
-}   	  
-//开启OLED显示    
-void OLED_Display_On(void)
-{
-	OLED_WR_Byte(0X8D,OLED_CMD);  //SET DCDC命令
-	OLED_WR_Byte(0X14,OLED_CMD);  //DCDC ON
-	OLED_WR_Byte(0XAF,OLED_CMD);  //DISPLAY ON
-}
-//关闭OLED显示     
-void OLED_Display_Off(void)
-{
-	OLED_WR_Byte(0X8D,OLED_CMD);  //SET DCDC命令
-	OLED_WR_Byte(0X10,OLED_CMD);  //DCDC OFF
-	OLED_WR_Byte(0XAE,OLED_CMD);  //DISPLAY OFF
-}		   			 
+
 //清屏函数,清完屏,整个屏幕是黑色的!和没点亮一样!!!	  
 void OLED_Clear(void)  
 {  

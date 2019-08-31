@@ -29,33 +29,6 @@ void  OLED_TASK (void const * argument)
    
 	
 
-		if( (SYSTEMSTATE_OFFTRUE==g_oledStateFlag)||(SYSTEMSTATE_ONTRUE==g_oledStateFlag) )
-		{
-			if((10<n)&&(20>=n))
-			{		
-                cocoguojia_oledRunShowFor2();
-				n++;	
-			}
-			else if(10>=n)
-			{
-				if(SYSTEMSTATE_ONTRUE==g_oledStateFlag)
-                {
-                      cocoguojia_oledRunShowFor1(1);
-                }
-                else
-                {
-                      cocoguojia_oledRunShowFor1(0);
-                }    
-                n++;
-			}
-			else
-			{
-				OLED_Clear();
-				osDelay(2);		
-				n=0;
-			}	
-		}
-    
 
 
 
@@ -84,10 +57,6 @@ void  OLED_TASK (void const * argument)
 			cocoguojia_oledShowSetModel1();
 		}
         
-        //if(OLEDSHOWSTATE_SETMODEL2==g_oledStateFlag)    //进入到设置模式 page2
-		//{
-		//	cocoguojia_oledShowSetModel22();
-		//}
 
 		
 		if(OLEDSHOWSTATE_SETMODEL3==g_oledStateFlag)    //进入到设置结果显示界面
